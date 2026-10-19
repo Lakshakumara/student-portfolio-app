@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Virtual environments
+venv/
+.venv/
+env/
+
+# Secrets / config
+.env
+.env.*
+!.env.example
+
+# Databases / local data
+*.db
+*.sqlite3
+
+# IDE
+.idea/
+.vscode/
+
+# Build output
+dist/
+build/
