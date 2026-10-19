@@ -1,0 +1,69 @@
+<!-- ===================================================================
+     TAB 3: PROJECTS & SKILLS SECTION
+     File: partials/tab_projects.html
+     =================================================================== -->
+<section id="tab-projects" class="tab-content">
+    <div class="section-header">
+        <span class="section-tag">Portfolio Showcase</span>
+        <h3 class="section-title">Featured Projects</h3>
+    </div>
+
+    <div class="projects-grid">
+        {% for proj in data.projects %}
+        <div class="glass-card project-card">
+            {% if proj.featured %}
+            <span class="project-badge"><i class="fa-solid fa-star"></i> Featured</span>
+            {% endif %}
+
+            <div class="project-top">
+                <div class="project-icon-box">
+                    <i class="fa-solid {{ proj.icon }}"></i>
+                </div>
+                <div>
+                    <div class="project-title">{{ proj.title }}</div>
+                    <div style="font-size:0.72rem; color:var(--accent-secondary); font-weight:600;">{{ proj.category }}</div>
+                </div>
+            </div>
+
+            <p class="project-desc">{{ proj.description }}</p>
+
+            <div class="tech-tags">
+                {% for t in proj.tech %}
+                <span class="tech-tag">{{ t }}</span>
+                {% endfor %}
+            </div>
+
+            <div class="project-links">
+                <a href="{{ proj.github }}" target="_blank" rel="noopener noreferrer" class="btn-sm btn-outline">
+                    <i class="fa-brands fa-github"></i> Code
+                </a>
+                <a href="/api/download-cv" class="btn-sm btn-primary">
+                    <i class="fa-solid fa-download"></i> Academic CV
+                </a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Skills Matrix -->
+    <div class="section-header" style="margin-top: 25px;">
+        <span class="section-tag">Tech Stack</span>
+        <h3 class="section-title">Skills &amp; Tools</h3>
+    </div>
+
+    <div class="glass-card">
+        {% for cat in data.skills %}
+        <div class="skill-category">
+            <div class="skill-cat-title">{{ cat.category }}</div>
+            <div class="skill-chips">
+                {% for item in cat['items'] %}
+                <span class="skill-chip">
+                    <i class="fa-solid fa-check" style="font-size:0.65rem; color:var(--accent-secondary);"></i>
+                    {{ item }}
+                </span>
+                {% endfor %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>

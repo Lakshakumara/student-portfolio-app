@@ -1,0 +1,278 @@
+<!-- ===================================================================
+     TAB 2: ACADEMICS & GOALS SECTION
+     File: partials/tab_academics.html
+
+     Structure:
+       1. Summary Banner          — quick-glance stats card
+       2. Quick-Jump Pills        — scroll to Subjects / Milestones / Activities / Roadmap
+       3. Subjects Accordion      — collapsible A/L subject cards
+       4. Milestones Accordion    — collapsible O/L & Scholarship cards
+       5. Co-Curricular Accordion — collapsible activity groups
+       6. Career Roadmap Accordion— collapsible timeline
+     =================================================================== -->
+<section id="tab-academics" class="tab-content">
+
+    <!-- ── 1. SUMMARY BANNER ─────────────────────────────────────── -->
+    <div class="glass-card acad-summary-card">
+        <div class="acad-summary-top">
+            <div class="acad-summary-avatar">
+                <i class="fa-solid fa-graduation-cap"></i>
+            </div>
+            <div>
+                <div class="acad-summary-name">{{ data.profile.name }}</div>
+                <div class="acad-summary-sub">{{ data.academics.stream }} Stream · {{ data.academics.school }}</div>
+            </div>
+        </div>
+        <p class="acad-summary-desc">
+            Currently studying <strong>{{ data.academics.stream }}</strong> at
+            <strong>{{ data.academics.school }}</strong>, Rathnapura — targeting the
+            <strong>{{ data.academics.expected_exam }}</strong>.
+            Previously achieved <strong>{{ data.academics.ol_results.grade }}</strong> in the
+            O/L 2025 examination and a <strong>{{ data.academics.scholarship.marks }}-mark</strong>
+            Grade 5 Scholarship pass. Aspiring towards a
+            <strong>B.Sc. Hons in Computer Engineering</strong> with a focus on
+            Game Development &amp; AI.
+        </p>
+        <div class="acad-summary-stats">
+            <div class="acad-stat">
+                <span class="acad-stat-val">{{ data.academics.ol_results.grade }}</span>
+                <span class="acad-stat-lbl">O/L 2025</span>
+            </div>
+            <div class="acad-stat">
+                <span class="acad-stat-val">{{ data.academics.scholarship.marks }}</span>
+                <span class="acad-stat-lbl">Scholarship</span>
+            </div>
+            <div class="acad-stat">
+                <span class="acad-stat-val">{{ data.academics.subjects | length }}</span>
+                <span class="acad-stat-lbl">A/L Subjects</span>
+            </div>
+            <div class="acad-stat">
+                <span class="acad-stat-val">2028</span>
+                <span class="acad-stat-lbl">Exam Year</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── 2. QUICK-JUMP PILLS ───────────────────────────────────── -->
+    <div class="acad-quickjump" id="acadQuickjump" aria-label="Jump to section">
+        <button class="acad-jump-pill active" data-target="acad-subjects">
+            <i class="fa-solid fa-book-bookmark"></i> Subjects
+        </button>
+        <button class="acad-jump-pill" data-target="acad-milestones">
+            <i class="fa-solid fa-trophy"></i> Milestones
+        </button>
+        <button class="acad-jump-pill" data-target="acad-activities">
+            <i class="fa-solid fa-shield-halved"></i> Activities
+        </button>
+        <button class="acad-jump-pill" data-target="acad-roadmap">
+            <i class="fa-solid fa-route"></i> Roadmap
+        </button>
+    </div>
+
+    <!-- ── 3. SUBJECTS ACCORDION ─────────────────────────────────── -->
+    <div class="acad-section" id="acad-subjects">
+        <button class="acad-section-toggle" aria-expanded="false" data-section="subjects">
+            <span class="acad-section-label">
+                <i class="fa-solid fa-book-bookmark"></i>
+                A/L Subjects
+                <span class="acad-count-pill">{{ data.academics.subjects | length }}</span>
+            </span>
+            <i class="fa-solid fa-chevron-up acad-chevron"></i>
+        </button>
+        <div class="acad-section-body" id="acad-subjects-body">
+            <div class="section-header" style="margin-top: 4px;">
+                <span class="section-tag">A/L Physical Science Stream</span>
+                <h3 class="section-title">Academic Subjects</h3>
+            </div>
+            {% for sub in data.academics.subjects %}
+            <div class="glass-card subject-card">
+                <div class="subject-header">
+                    <div class="subject-title">
+                        <div class="subject-icon">
+                            <i class="fa-solid fa-book-bookmark"></i>
+                        </div>
+                        <div>
+                            <div class="subject-name">{{ sub.name }}</div>
+                            <div class="subject-code">{{ sub.code }}</div>
+                        </div>
+                    </div>
+                    <span style="font-size: 0.8rem; font-weight: 700; color: var(--accent-secondary);">{{ sub.progress }}%</span>
+                </div>
+                <div class="progress-bar-bg">
+                    <div class="progress-bar-fill" data-progress="{{ sub.progress }}"></div>
+                </div>
+                <p class="subject-desc">{{ sub.description }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- ── 4. MILESTONES ACCORDION ───────────────────────────────── -->
+    <div class="acad-section" id="acad-milestones">
+        <button class="acad-section-toggle" aria-expanded="false" data-section="milestones">
+            <span class="acad-section-label">
+                <i class="fa-solid fa-trophy"></i>
+                Academic Milestones
+                <span class="acad-count-pill">3</span>
+            </span>
+            <i class="fa-solid fa-chevron-up acad-chevron"></i>
+        </button>
+        <div class="acad-section-body" id="acad-milestones-body">
+            <div class="section-header" style="margin-top: 4px;">
+                <span class="section-tag">Past Achievements</span>
+                <h3 class="section-title">Academic Milestones</h3>
+            </div>
+
+            <!-- O/L Achievement Box -->
+            <div class="glass-card achievement-box" onclick="window.location.href='/certificates/{{ data.academics.ol_results.cert_id }}'" role="button" tabindex="0" aria-label="View O/L Examination Certificate Photos">
+                <div class="project-top" style="margin-bottom: 8px;">
+                    <div class="project-icon-box" style="background: rgba(6, 182, 212, 0.15); color: var(--accent-secondary);">
+                        <i class="fa-solid fa-trophy"></i>
+                    </div>
+                    <div style="flex: 1;">
+                        <div class="project-title">O/L Examination {{ data.academics.ol_results.year }} — {{ data.academics.ol_results.grade }} 🎉</div>
+                        <div style="font-size:0.75rem; color:var(--accent-secondary); font-weight:600;">{{ data.academics.ol_results.school }}</div>
+                    </div>
+                    <span class="achievement-tag-pill">
+                        <i class="fa-solid fa-certificate"></i> Verified
+                    </span>
+                </div>
+                <div class="tech-tags" style="margin-top: 8px; margin-bottom: 12px;">
+                    {% for sub in data.academics.ol_results.subjects %}
+                    <span class="tech-tag">{{ sub }}</span>
+                    {% endfor %}
+                </div>
+                <div class="achievement-card-footer">
+                    <a href="/certificates/{{ data.academics.ol_results.cert_id }}" class="view-cert-btn" onclick="event.stopPropagation();">
+                        <span class="view-cert-btn-text"><i class="fa-solid fa-images"></i> View Certificate Photos</span>
+                        <span class="view-cert-btn-arrow"><i class="fa-solid fa-arrow-right"></i></span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Scholarship Achievement Box -->
+            <div class="glass-card achievement-box" onclick="window.location.href='/certificates/{{ data.academics.scholarship.cert_id }}'" role="button" tabindex="0" aria-label="View Grade 5 Scholarship Certificate Photos" style="margin-top: 12px;">
+                <div class="project-top" style="margin-bottom: 8px;">
+                    <div class="project-icon-box" style="background: rgba(168, 85, 247, 0.15); color: var(--accent-tertiary);">
+                        <i class="fa-solid fa-medal"></i>
+                    </div>
+                    <div style="flex: 1;">
+                        <div class="project-title">{{ data.academics.scholarship.year }} Scholarship — {{ data.academics.scholarship.marks }} Marks ✨</div>
+                        <div style="font-size:0.75rem; color:var(--accent-tertiary); font-weight:600;">{{ data.academics.scholarship.school }} → {{ data.academics.ol_results.school }}</div>
+                    </div>
+                    <span class="achievement-tag-pill" style="background: rgba(168, 85, 247, 0.15); color: var(--accent-tertiary); border-color: rgba(168, 85, 247, 0.3);">
+                        <i class="fa-solid fa-certificate"></i> Verified
+                    </span>
+                </div>
+                <div class="achievement-card-footer" style="margin-top: 8px;">
+                    <a href="/certificates/{{ data.academics.scholarship.cert_id }}" class="view-cert-btn" onclick="event.stopPropagation();">
+                        <span class="view-cert-btn-text"><i class="fa-solid fa-images"></i> View Certificate Photos</span>
+                        <span class="view-cert-btn-arrow"><i class="fa-solid fa-arrow-right"></i></span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Dahampasal (Sunday School) Academic Achievements Box -->
+            <div class="glass-card achievement-box" onclick="window.location.href='/certificates/{{ data.academics.dahampasal.cert_id }}'" role="button" tabindex="0" aria-label="View Dahampasal Academic Achievement Certificates" style="margin-top: 12px;">
+                <div class="project-top" style="margin-bottom: 8px;">
+                    <div class="project-icon-box" style="background: rgba(245, 158, 11, 0.15); color: #f59e0b;">
+                        <i class="fa-solid fa-dharmachakra"></i>
+                    </div>
+                    <div style="flex: 1;">
+                        <div class="project-title">{{ data.academics.dahampasal.title }} 📿</div>
+                        <div style="font-size:0.75rem; color:#f59e0b; font-weight:600;">{{ data.academics.dahampasal.description | truncate(60) }}</div>
+                    </div>
+                    <span class="achievement-tag-pill" style="background: rgba(245, 158, 11, 0.15); color: #f59e0b; border-color: rgba(245, 158, 11, 0.3);">
+                        <i class="fa-solid fa-certificate"></i> Verified
+                    </span>
+                </div>
+                <div class="achievement-card-footer" style="margin-top: 8px;">
+                    <a href="/certificates/{{ data.academics.dahampasal.cert_id }}" class="view-cert-btn" onclick="event.stopPropagation();">
+                        <span class="view-cert-btn-text"><i class="fa-solid fa-images"></i> View Certificates</span>
+                        <span class="view-cert-btn-arrow"><i class="fa-solid fa-arrow-right"></i></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── 5. CO-CURRICULAR ACTIVITIES ACCORDION ─────────────────── -->
+    <div class="acad-section" id="acad-activities">
+        <button class="acad-section-toggle" aria-expanded="false" data-section="activities">
+            <span class="acad-section-label">
+                <i class="fa-solid fa-shield-halved"></i>
+                Co-Curricular &amp; Leadership
+                <span class="acad-count-pill">{{ data.extracurriculars | length }}</span>
+            </span>
+            <i class="fa-solid fa-chevron-up acad-chevron"></i>
+        </button>
+        <div class="acad-section-body" id="acad-activities-body">
+            <div class="section-header" style="margin-top: 4px;">
+                <span class="section-tag">Beyond Academics</span>
+                <h3 class="section-title">Co-Curricular &amp; Leadership</h3>
+            </div>
+            {% for group in data.extracurriculars %}
+            <div class="glass-card activity-card">
+                <div class="activity-group-title">
+                    <i class="fa-solid {{ group.icon }}" style="color: {{ group.color }};"></i>
+                    <span>{{ group.category }}</span>
+                </div>
+                <div class="activity-list">
+                    {% for item in group['items'] %}
+                    <div class="activity-item achievement-activity-box" onclick="window.location.href='/certificates/{{ item.cert_id }}'" role="button" tabindex="0" aria-label="View {{ item.title }} Certificate">
+                        <div class="activity-icon" style="color: {{ group.color }};">
+                            <i class="fa-solid {{ item.icon }}"></i>
+                        </div>
+                        <div class="activity-body">
+                            <div class="activity-header">
+                                <span class="activity-name">{{ item.title }}</span>
+                                <span class="activity-pill">{{ item.badge }}</span>
+                            </div>
+                            <div class="activity-role">{{ item.role }}</div>
+                            <p class="activity-desc">{{ item.description }}</p>
+                            <div class="activity-cert-action">
+                                <a href="/certificates/{{ item.cert_id }}" class="activity-cert-btn" onclick="event.stopPropagation();">
+                                    <span><i class="fa-solid fa-award"></i> View Certificate</span>
+                                    <i class="fa-solid fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- ── 6. CAREER ROADMAP ACCORDION ───────────────────────────── -->
+    <div class="acad-section" id="acad-roadmap">
+        <button class="acad-section-toggle" aria-expanded="false" data-section="roadmap">
+            <span class="acad-section-label">
+                <i class="fa-solid fa-route"></i>
+                Career Roadmap
+                <span class="acad-count-pill">{{ data.academics.roadmap | length }}</span>
+            </span>
+            <i class="fa-solid fa-chevron-up acad-chevron"></i>
+        </button>
+        <div class="acad-section-body" id="acad-roadmap-body">
+            <div class="section-header" style="margin-top: 4px;">
+                <span class="section-tag">Future Ambition</span>
+                <h3 class="section-title">Career Roadmap</h3>
+            </div>
+            <div class="glass-card">
+                <div class="timeline">
+                    {% for item in data.academics.roadmap %}
+                    <div class="timeline-item {% if loop.first %}active{% endif %}">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-phase">{{ item.phase }} ({{ item.year }})</div>
+                        <div class="timeline-title">{{ item.title }}</div>
+                        <div class="timeline-desc">{{ item.detail }}</div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>

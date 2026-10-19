@@ -1,0 +1,69 @@
+<!-- ===================================================================
+     TAB 4: CONTACT & CONNECT SECTION
+     File: partials/tab_contact.html
+     =================================================================== -->
+<section id="tab-contact" class="tab-content">
+    <div class="section-header">
+        <span class="section-tag">Get in Touch</span>
+        <h3 class="section-title">Contact &amp; Connect</h3>
+    </div>
+
+    <div class="glass-card">
+        <form id="contactForm">
+            <div class="form-group">
+                <label for="senderName" class="form-label">Your Name</label>
+                <input type="text" id="senderName" class="form-input" placeholder="e.g. Dr. Silva / Tech Recruiter" required>
+            </div>
+
+            <div class="form-group">
+                <label for="senderEmail" class="form-label">Your Email</label>
+                <input type="email" id="senderEmail" class="form-input" placeholder="name@example.com" required>
+            </div>
+
+            <div class="form-group">
+                <label for="msgSubject" class="form-label">Subject</label>
+                <input type="text" id="msgSubject" class="form-input" placeholder="e.g. University Inquiry / Project Collaboration" required>
+            </div>
+
+            <div class="form-group">
+                <label for="msgText" class="form-label">Message</label>
+                <textarea id="msgText" class="form-textarea" placeholder="Write your message here..." required></textarea>
+            </div>
+
+            <button type="submit" class="btn-sm btn-primary" style="width: 100%; justify-content: center; padding: 12px;">
+                <i class="fa-solid fa-paper-plane"></i> Send Message
+            </button>
+        </form>
+
+        <div id="contactResponse" style="display:none; margin-top: 15px; font-size: 0.85rem;"></div>
+    </div>
+
+    <!-- Social Links & Resume -->
+    <div class="section-header" style="margin-top: 20px;">
+        <span class="section-tag">Profiles</span>
+        <h3 class="section-title">Social Links</h3>
+    </div>
+
+    <div class="social-grid">
+        <a href="{{ data.profile.socials.github }}" target="_blank" rel="noopener noreferrer" class="social-card">
+            <i class="fa-brands fa-github" style="font-size: 1.2rem; color: var(--text-main);"></i>
+            <span>GitHub</span>
+        </a>
+        <a href="{{ data.profile.socials.linkedin }}" target="_blank" rel="noopener noreferrer" class="social-card">
+            <i class="fa-brands fa-linkedin" style="font-size: 1.2rem; color: #0a66c2;"></i>
+            <span>LinkedIn</span>
+        </a>
+        <a href="{{ data.profile.socials.whatsapp }}" target="_blank" rel="noopener noreferrer" class="social-card">
+            <i class="fa-brands fa-whatsapp" style="font-size: 1.2rem; color: #25d366;"></i>
+            <span>WhatsApp</span>
+        </a>
+        <a href="{{ data.profile.socials.telegram }}" target="_blank" rel="noopener noreferrer" class="social-card">
+            <i class="fa-brands fa-telegram" style="font-size: 1.2rem; color: #2aabee;"></i>
+            <span>Telegram</span>
+        </a>
+        <a href="/api/download-cv" class="social-card" style="border-color: var(--accent-primary);">
+            <i class="fa-solid fa-file-pdf" style="font-size: 1.2rem; color: var(--accent-primary);"></i>
+            <span>Download CV</span>
+        </a>
+    </div>
+</section>

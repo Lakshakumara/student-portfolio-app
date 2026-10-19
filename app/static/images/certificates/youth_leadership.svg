@@ -1,0 +1,114 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 850" width="100%" height="100%">
+  <defs>
+    <linearGradient id="ylBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fdfbf7"/>
+      <stop offset="100%" stop-color="#f4efe6"/>
+    </linearGradient>
+    <linearGradient id="cyanGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0284c7"/>
+      <stop offset="50%" stop-color="#06b6d4"/>
+      <stop offset="100%" stop-color="#0d9488"/>
+    </linearGradient>
+    <linearGradient id="goldSeal" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#d97706"/>
+      <stop offset="40%" stop-color="#fcd34d"/>
+      <stop offset="80%" stop-color="#b45309"/>
+    </linearGradient>
+    <filter id="ylShadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="2" dy="4" stdDeviation="6" flood-opacity="0.2"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect x="0" y="0" width="1200" height="850" fill="url(#ylBg)"/>
+
+  <!-- Ornate Dual Border -->
+  <rect x="35" y="35" width="1130" height="780" fill="none" stroke="url(#cyanGrad)" stroke-width="5" rx="12"/>
+  <rect x="46" y="46" width="1108" height="758" fill="none" stroke="#0891b2" stroke-width="1.5" stroke-dasharray="8,5" rx="8"/>
+  <rect x="56" y="56" width="1088" height="738" fill="none" stroke="#cbd5e1" stroke-width="1" rx="4"/>
+
+  <!-- Corner Geometrics -->
+  <g fill="url(#cyanGrad)">
+    <polygon points="58,58 110,58 58,110"/>
+    <polygon points="1142,58 1090,58 1142,110"/>
+    <polygon points="58,792 110,792 58,740"/>
+    <polygon points="1142,792 1090,792 1142,740"/>
+  </g>
+
+  <!-- Top Badge Emblem -->
+  <g transform="translate(600, 135)" filter="url(#ylShadow)">
+    <circle cx="0" cy="0" r="42" fill="url(#cyanGrad)"/>
+    <circle cx="0" cy="0" r="34" fill="#0f172a"/>
+    <!-- Torch / Star / Leadership Icon -->
+    <path d="M 0 -22 L 5 -7 L 21 -7 L 8 3 L 13 18 L 0 9 L -13 18 L -8 3 L -21 -7 L -5 -7 Z" fill="#fcd34d"/>
+  </g>
+
+  <!-- Header -->
+  <text x="600" y="220" text-anchor="middle" font-family="'Plus Jakarta Sans', Georgia, serif" font-size="20" font-weight="800" fill="#0f172a" letter-spacing="4">
+    YOUTH EMPOWERMENT &amp; SKILL DEVELOPMENT FORUM
+  </text>
+  <text x="600" y="248" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="13" font-weight="600" fill="#0891b2" letter-spacing="3">
+    FUTURE LEADERS &amp; COMMUNITY INNOVATION PROGRAMME
+  </text>
+
+  <!-- Title -->
+  <text x="600" y="325" text-anchor="middle" font-family="Georgia, serif" font-size="38" font-weight="700" fill="#0f172a" letter-spacing="1">
+    Certificate of Achievement
+  </text>
+
+  <!-- Subtitle -->
+  <text x="600" y="375" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="16" font-style="italic" fill="#64748b">
+    This is proudly conferred to
+  </text>
+
+  <!-- Recipient Name -->
+  <text x="600" y="445" text-anchor="middle" font-family="Georgia, serif" font-size="44" font-weight="800" fill="#0891b2" letter-spacing="1">
+    Y.N.A. DEWMINI
+  </text>
+  <line x1="320" y1="465" x2="880" y2="465" stroke="url(#cyanGrad)" stroke-width="2.5"/>
+
+  <!-- Body Text -->
+  <text x="600" y="515" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="17" fill="#334155" font-weight="500">
+    For outstanding participation, collaborative leadership, and successful completion of the
+  </text>
+  <text x="600" y="545" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="17" fill="#334155" font-weight="500">
+    Advanced Youth Leadership &amp; Soft Skills Development Curriculum.
+  </text>
+
+  <!-- Badge Capsule -->
+  <rect x="400" y="585" width="400" height="38" rx="19" fill="#06b6d4" opacity="0.15"/>
+  <rect x="400" y="585" width="400" height="38" rx="19" fill="none" stroke="#0891b2" stroke-width="1.5"/>
+  <text x="600" y="610" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="13" font-weight="800" fill="#0891b2" letter-spacing="1">
+    CERTIFIED PARTICIPANT · LEADERSHIP &amp; SKILLS
+  </text>
+
+  <!-- Official Embossed Gold Seal -->
+  <g transform="translate(230, 680)" filter="url(#ylShadow)">
+    <circle cx="0" cy="0" r="48" fill="url(#goldSeal)"/>
+    <circle cx="0" cy="0" r="40" fill="none" stroke="#78350f" stroke-width="2" stroke-dasharray="4,2"/>
+    <text x="0" y="-8" text-anchor="middle" font-family="Georgia, serif" font-size="11" font-weight="800" fill="#78350f">NATIONAL</text>
+    <text x="0" y="8" text-anchor="middle" font-family="Georgia, serif" font-size="13" font-weight="800" fill="#78350f">YOUTH</text>
+    <text x="0" y="24" text-anchor="middle" font-family="Georgia, serif" font-size="10" font-weight="800" fill="#78350f">COUNCIL</text>
+  </g>
+
+  <!-- Left Signature -->
+  <g transform="translate(480, 700)" text-anchor="center">
+    <path d="M 0 -5 C 20 -20, 45 5, 75 -15 C 95 0, 110 -10, 130 5" fill="none" stroke="#0f172a" stroke-width="2" stroke-linecap="round"/>
+    <line x1="-15" y1="12" x2="135" y2="12" stroke="#94a3b8" stroke-width="1"/>
+    <text x="60" y="32" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="13" font-weight="700" fill="#0f172a">D. Samarasinghe</text>
+    <text x="60" y="48" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="11" fill="#64748b">Program Coordinator</text>
+  </g>
+
+  <!-- Right Signature -->
+  <g transform="translate(820, 700)" text-anchor="center">
+    <path d="M 0 5 C 25 -15, 55 10, 80 -10 C 105 -5, 115 15, 135 -5" fill="none" stroke="#0f172a" stroke-width="2" stroke-linecap="round"/>
+    <line x1="-15" y1="12" x2="135" y2="12" stroke="#94a3b8" stroke-width="1"/>
+    <text x="60" y="32" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="13" font-weight="700" fill="#0f172a">S. K. Wickramasinghe</text>
+    <text x="60" y="48" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="11" fill="#64748b">Director General</text>
+  </g>
+
+  <!-- Credential Footer -->
+  <text x="600" y="785" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" fill="#64748b">
+    VERIFICATION ID: YOUTH-LEAD-731 · ISSUED 2024
+  </text>
+</svg>

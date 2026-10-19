@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>{{ data.profile.name }} | A/L Physical Science &amp; Computer Engineering Portfolio</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Mobile-first career portfolio for {{ data.profile.name }} - A/L Physical Science Student aspiring for Computer Engineering. Features projects in Python, Web Development, and Game Development.">
+    <meta name="author" content="{{ data.profile.name }}">
+    <meta name="theme-color" content="#6366f1">
+
+    <!-- Favicon & PWA Manifest -->
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <link rel="manifest" href="/static/manifest.json">
+
+    <!-- FontAwesome 6 Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+
+    <!-- Ambient Lighting Background Effects -->
+    <div class="ambient-glow-1"></div>
+    <div class="ambient-glow-2"></div>
+
+    <!-- Main Mobile Frame Container -->
+    <main class="app-viewport">
+
+        <!-- Top Header & App Bar -->
+        <header class="top-bar">
+            <div class="brand-title">
+                <div class="brand-icon">
+                    <i class="fa-solid fa-laptop-code"></i>
+                </div>
+                <div class="brand-text">
+                    <h1>{{ data.profile.name }}</h1>
+                    <span>CompEng Aspirant</span>
+                </div>
+            </div>
+            <div class="header-status-pill">
+                <span class="status-dot"></span>
+                <span>A/L 2028</span>
+            </div>
+        </header>
+
+        <!-- ===================== PAGE SECTIONS ===================== -->
+        {% include "partials/tab_home.html" %}
+        {% include "partials/tab_academics.html" %}
+        {% include "partials/tab_projects.html" %}
+        {% include "partials/tab_contact.html" %}
+
+    </main>
+
+    <!-- ===============================================================
+         FLOATING ACTION BUTTON (FAB) & POPUP RADIAL MENU
+         =============================================================== -->
+    <div class="fab-container">
+        <div id="fabMenu" class="fab-menu">
+            <a href="/api/download-cv" class="fab-menu-item">
+                <span>Download Resume</span>
+                <div class="fab-menu-icon">
+                    <i class="fa-solid fa-file-arrow-down"></i>
+                </div>
+            </a>
+            <button id="fabThemeToggle" class="fab-menu-item">
+                <span>Toggle Theme</span>
+                <div class="fab-menu-icon" style="background: var(--accent-tertiary);">
+                    <i class="fa-solid fa-sun"></i>
+                </div>
+            </button>
+            <button id="fabInstallPwa" class="fab-menu-item" style="display: none;">
+                <span>Install App</span>
+                <div class="fab-menu-icon" style="background: var(--accent-secondary);">
+                    <i class="fa-solid fa-mobile-screen"></i>
+                </div>
+            </button>
+        </div>
+        <button id="fabMainBtn" class="fab-main-btn" aria-label="Quick Actions">
+            <i class="fa-solid fa-bars-staggered"></i>
+        </button>
+    </div>
+
+    <!-- ===============================================================
+         FIXED MOBILE BOTTOM NAVIGATION BAR
+         =============================================================== -->
+    {% include "partials/bottom_nav.html" %}
+
+    <!-- Custom JavaScript -->
+    <script src="/static/js/app.js"></script>
+</body>
+</html>

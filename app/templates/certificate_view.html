@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>{{ cert.title }} | Certificate &amp; Credentials — {{ data.profile.name }}</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="View verified certificate and achievement photos for {{ cert.title }} awarded to {{ data.profile.name }} ({{ cert.subtitle }}).">
+    <meta name="author" content="{{ data.profile.name }}">
+    <meta name="theme-color" content="#6366f1">
+
+    <!-- Favicon & PWA Manifest -->
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <link rel="manifest" href="/static/manifest.json">
+
+    <!-- FontAwesome 6 Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body class="certificate-page-body">
+
+    <!-- Ambient Lighting Background Effects -->
+    <div class="ambient-glow-1"></div>
+    <div class="ambient-glow-2"></div>
+
+    <!-- Main Mobile Frame Container -->
+    <main class="app-viewport cert-viewport">
+
+        <!-- Top Navigation Bar with Back Button -->
+        <header class="top-bar cert-top-bar">
+            <a href="/?tab=tab-academics" class="cert-back-btn" id="backToAcademicsBtn" aria-label="Back to Academics">
+                <i class="fa-solid fa-arrow-left"></i>
+                <span>Academics</span>
+            </a>
+            <div class="cert-nav-title">
+                <span>Certificate View</span>
+            </div>
+            <button id="certThemeToggle" class="cert-theme-btn" aria-label="Toggle Theme">
+                <i class="fa-solid fa-sun"></i>
+            </button>
+        </header>
+
+        <!-- Main Content Section -->
+        <div class="cert-content-container">
+
+            <!-- Achievement Header Card -->
+            <div class="glass-card cert-header-card">
+                <div class="cert-header-meta">
+                    <span class="cert-category-tag" style="background: rgba(99, 102, 241, 0.15); color: var(--accent-primary); border-color: rgba(99, 102, 241, 0.3);">
+                        <i class="fa-solid {{ cert.icon }}"></i> {{ cert.category }}
+                    </span>
+                    <span class="cert-verified-pill">
+                        <i class="fa-solid fa-circle-check"></i> {{ cert.verification_status }}
+                    </span>
+                </div>
+
+                <h1 class="cert-main-title">{{ cert.title }}</h1>
+                <div class="cert-org-subtitle">
+                    <i class="fa-solid fa-building-columns"></i>
+                    <span>{{ cert.subtitle }}</span>
+                </div>
+
+                <div class="cert-badge-row">
+                    <span class="cert-award-badge" style="background: {{ cert.badge_color }}18; color: {{ cert.badge_color }}; border-color: {{ cert.badge_color }}40;">
+                        <i class="fa-solid fa-award"></i> {{ cert.badge }}
+                    </span>
+                    <span class="cert-year-badge">
+                        <i class="fa-solid fa-calendar-day"></i> {{ cert.year }}
+                    </span>
+                </div>
+            </div>
+
+            <!-- Certificate Photo Showcase Container -->
+            {% if cert.get('accomplishments') %}
+            <!-- === MULTI-ACCOMPLISHMENT ACCORDION VIEW === -->
+            <div class="glass-card cert-showcase-card">
+                <div class="cert-showcase-header">
+                    <div class="cert-showcase-title">
+                        <i class="fa-solid fa-layer-group"></i>
+                        <span>Accomplishments & Certificates</span>
+                    </div>
+                    <span class="cert-photo-count">{{ cert.accomplishments | length }} Certificates</span>
+                </div>
+
+                {% for accomplishment in cert.accomplishments %}
+                <div class="cert-accomplishment-section" id="accomplishment-{{ accomplishment.id }}">
+                    <button class="cert-accomplishment-toggle" aria-expanded="{% if loop.first %}true{% else %}false{% endif %}" data-accomplishment="{{ accomplishment.id }}">
+                        <div class="cert-accomplishment-toggle-left">
+                            <div class="cert-accomplishment-dot" style="background: {{ accomplishment.badge_color }}; box-shadow: 0 0 10px {{ accomplishment.badge_color }};"></div>
+                            <div class="cert-accomplishment-toggle-info">
+                                <span class="cert-accomplishment-toggle-title">{{ accomplishment.title }}</span>
+                                <span class="cert-accomplishment-toggle-meta">
+                                    <span class="cert-accomplishment-year">{{ accomplishment.year }}</span>
+                                    <span class="cert-accomplishment-badge-sm" style="background: {{ accomplishment.badge_color }}18; color: {{ accomplishment.badge_color }}; border-color: {{ accomplishment.badge_color }}40;">{{ accomplishment.badge }}</span>
+                                </span>
+                            </div>
+                        </div>
+                        <i class="fa-solid fa-chevron-up cert-accomplishment-chevron"></i>
+                    </button>
+                    <div class="cert-accomplishment-body {% if loop.first %}open{% endif %}" id="accomplishment-body-{{ accomplishment.id }}">
+                        <!-- Accomplishment Photo -->
+                        <div class="cert-image-frame" style="margin-bottom: 12px;">
+                            <img src="{{ accomplishment.image.url }}" 
+                                 alt="{{ accomplishment.title }} Certificate"
+                                 class="cert-display-img accomplishment-img"
+                                 loading="lazy"
+                                 data-lightbox-src="{{ accomplishment.image.url }}"
+                                 data-lightbox-title="{{ accomplishment.title }}"
+                                 data-lightbox-subtitle="{{ accomplishment.badge }} · {{ accomplishment.year }}">
+                            <div class="cert-img-actions">
+                                <button class="cert-action-pill open-accomplishment-lightbox" data-src="{{ accomplishment.image.url }}" data-title="{{ accomplishment.title }}" data-subtitle="{{ accomplishment.badge }} · {{ accomplishment.year }}" title="View Fullscreen">
+                                    <i class="fa-solid fa-expand"></i>
+                                    <span>Enlarge</span>
+                                </button>
+                                <a href="{{ accomplishment.image.url }}" download="{{ accomplishment.id }}_certificate.jpg" class="cert-action-pill" title="Download Certificate Photo">
+                                    <i class="fa-solid fa-download"></i>
+                                    <span>Save</span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="cert-caption-box" style="margin-bottom: 12px;">
+                            <p class="cert-caption-text">
+                                <i class="fa-solid fa-quote-left"></i>
+                                {{ accomplishment.image.caption }}
+                            </p>
+                        </div>
+
+                        <!-- Accomplishment Description -->
+                        <div class="cert-description-section">
+                            <div class="cert-section-subhead">
+                                <i class="fa-solid fa-file-lines"></i> Description
+                            </div>
+                            <p class="cert-description-para">{{ accomplishment.description }}</p>
+                        </div>
+
+                        <!-- Accomplishment Highlights -->
+                        <div class="cert-highlights-section">
+                            <div class="cert-section-subhead">
+                                <i class="fa-solid fa-star"></i> Key Highlights
+                            </div>
+                            <ul class="cert-highlights-list">
+                                {% for hl in accomplishment.highlights %}
+                                <li>
+                                    <i class="fa-solid fa-circle-check"></i>
+                                    <span>{{ hl }}</span>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+            <!-- Overall Certificate Details & Highlights Card -->
+            <div class="glass-card cert-details-card">
+                <div class="section-header" style="margin-bottom: 12px;">
+                    <span class="section-tag">Credential Details</span>
+                    <h3 class="section-title">Overall Achievement Summary</h3>
+                </div>
+
+                <div class="cert-details-grid">
+                    <div class="cert-detail-item">
+                        <span class="cert-detail-label">Recipient</span>
+                        <span class="cert-detail-value">{{ data.profile.full_name }}</span>
+                    </div>
+                    <div class="cert-detail-item">
+                        <span class="cert-detail-label">Issuing Authority</span>
+                        <span class="cert-detail-value">{{ cert.subtitle }}</span>
+                    </div>
+                    <div class="cert-detail-item">
+                        <span class="cert-detail-label">Institution</span>
+                        <span class="cert-detail-value">{{ cert.school }}</span>
+                    </div>
+                    <div class="cert-detail-item">
+                        <span class="cert-detail-label">Total Accomplishments</span>
+                        <span class="cert-detail-value code-font">{{ cert.accomplishments | length }} Certificates</span>
+                    </div>
+                    <div class="cert-detail-item">
+                        <span class="cert-detail-label">Period</span>
+                        <span class="cert-detail-value">{{ cert.issue_date }}</span>
+                    </div>
+                    <div class="cert-detail-item">
+                        <span class="cert-detail-label">Status</span>
+                        <span class="cert-detail-value verified-text"><i class="fa-solid fa-shield-check"></i> {{ cert.verification_status }}</span>
+                    </div>
+                </div>
+
+                <div class="cert-description-section">
+                    <div class="cert-section-subhead">
+                        <i class="fa-solid fa-file-lines"></i> Description
+                    </div>
+                    <p class="cert-description-para">{{ cert.description }}</p>
+                </div>
+
+                <div class="cert-highlights-section">
+                    <div class="cert-section-subhead">
+                        <i class="fa-solid fa-star"></i> Key Highlights
+                    </div>
+                    <ul class="cert-highlights-list">
+                        {% for hl in cert.highlights %}
+                        <li>
+                            <i class="fa-solid fa-circle-check"></i>
+                            <span>{{ hl }}</span>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+
+            {% else %}
+            <!-- === SINGLE CERTIFICATE VIEW (Original) === -->
+            <div class="glass-card cert-showcase-card">
+                <div class="cert-showcase-header">
+                    <div class="cert-showcase-title">
+                        <i class="fa-solid fa-image"></i>
+                        <span>Official Certificate Photo</span>
+                    </div>
+                    <span class="cert-photo-count">Photo 1 of {{ cert.images | length }}</span>
+                </div>
+
+                <!-- Main Certificate Photo Display -->
+                <div class="cert-image-frame" id="certImageFrame">
+                    <img id="mainCertPhoto" 
+                         src="{{ cert.images[0].url }}" 
+                         alt="{{ cert.title }} Certificate Photo for {{ data.profile.name }}" 
+                         class="cert-display-img"
+                         loading="eager">
+                    
+                    <!-- Floating Action Buttons on the Photo -->
+                    <div class="cert-img-actions">
+                        <button class="cert-action-pill" id="openLightboxBtn" title="Click to View Fullscreen / Zoom">
+                            <i class="fa-solid fa-expand"></i>
+                            <span>Enlarge</span>
+                        </button>
+                        <a href="{{ cert.images[0].url }}" download="{{ cert.id }}_certificate.jpg" class="cert-action-pill" id="downloadPhotoBtn" title="Download High-Res Certificate Photo">
+                            <i class="fa-solid fa-download"></i>
+                            <span>Save</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Photo Caption -->
+                <div class="cert-caption-box">
+                    <p class="cert-caption-text" id="certCaptionText">
+                        <i class="fa-solid fa-quote-left"></i>
+                        {{ cert.images[0].caption }}
+                    </p>
+                </div>
+            </div>
+
+            <!-- Certificate Details & Highlights Card -->
+            <div class="glass-card cert-details-card">
+                <div class="section-header" style="margin-bottom: 12px;">
+                    <span class="section-tag">Credential Details</span>
+                    <h3 class="section-title">Verified Achievement Information</h3>
+                </div>
+
+                <div class="cert-details-grid">
+                    <div class="cert-detail-item">
+                        <span class="cert-detail-label">Recipient</span>
+                        <span class="cert-detail-value">{{ data.profile.full_name }}</span>
+                    </div>
+                    <div class="cert-detail-item">
+                        <span class="cert-detail-label">Issuing Authority</span>
+                        <span class="cert-detail-value">{{ cert.subtitle }}</span>
+                    </div>
+                    <div class="cert-detail-item">
+                        <span class="cert-detail-label">Institution / School</span>
+                        <span class="cert-detail-value">{{ cert.school }}</span>
+                    </div>
+                    <div class="cert-detail-item">
+                        <span class="cert-detail-label">Credential Index</span>
+                        <span class="cert-detail-value code-font">{{ cert.credential_id }}</span>
+                    </div>
+                    <div class="cert-detail-item">
+                        <span class="cert-detail-label">Issue Date / Period</span>
+                        <span class="cert-detail-value">{{ cert.issue_date }}</span>
+                    </div>
+                    <div class="cert-detail-item">
+                        <span class="cert-detail-label">Status</span>
+                        <span class="cert-detail-value verified-text"><i class="fa-solid fa-shield-check"></i> {{ cert.verification_status }}</span>
+                    </div>
+                </div>
+
+                <!-- Comprehensive Description -->
+                <div class="cert-description-section">
+                    <div class="cert-section-subhead">
+                        <i class="fa-solid fa-file-lines"></i> Description
+                    </div>
+                    <p class="cert-description-para">{{ cert.description }}</p>
+                </div>
+
+                <!-- Key Highlights List -->
+                <div class="cert-highlights-section">
+                    <div class="cert-section-subhead">
+                        <i class="fa-solid fa-star"></i> Key Highlights
+                    </div>
+                    <ul class="cert-highlights-list">
+                        {% for hl in cert.highlights %}
+                        <li>
+                            <i class="fa-solid fa-circle-check"></i>
+                            <span>{{ hl }}</span>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+
+            {% endif %}
+
+            <!-- Quick Navigation to Other Achievement Certificates -->
+            <div class="cert-other-section">
+                <div class="section-header" style="margin-bottom: 12px;">
+                    <span class="section-tag">Explore Credentials</span>
+                    <h3 class="section-title">Other Achievement Certificates</h3>
+                </div>
+
+                <div class="cert-thumbs-scroll">
+                    {% for cid, citem in all_certs.items() %}
+                    <a href="/certificates/{{ cid }}" class="cert-thumb-card {% if cid == cert.id %}active-cert-thumb{% endif %}">
+                        <div class="cert-thumb-icon" style="color: {{ citem.badge_color }};">
+                            <i class="fa-solid {{ citem.icon }}"></i>
+                        </div>
+                        <div class="cert-thumb-info">
+                            <div class="cert-thumb-title">{{ citem.title }}</div>
+                            <div class="cert-thumb-badge">{{ citem.badge }}</div>
+                        </div>
+                        <i class="fa-solid fa-angle-right cert-thumb-arrow"></i>
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Back to Academics Large CTA Button -->
+            <div style="margin-top: 24px; margin-bottom: 30px;">
+                <a href="/?tab=tab-academics" class="cert-return-cta">
+                    <i class="fa-solid fa-arrow-left"></i>
+                    <span>Return to Academics Page</span>
+                </a>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- ===============================================================
+         LIGHTBOX MODAL FOR FULLSCREEN IMAGE ZOOM
+         =============================================================== -->
+    <div id="certLightbox" class="cert-lightbox-modal">
+        <div class="cert-lightbox-backdrop" id="certLightboxBackdrop"></div>
+        <div class="cert-lightbox-container">
+            <button id="closeLightboxBtn" class="lightbox-close-btn" aria-label="Close Lightbox">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="lightbox-image-wrapper">
+                <img id="lightboxImg" src="{{ cert.images[0].url }}" alt="Fullscreen Certificate Photo">
+            </div>
+            <div class="lightbox-caption">
+                <h4>{{ cert.title }}</h4>
+                <p>{{ cert.subtitle }} · {{ cert.badge }}</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom JavaScript -->
+    <script src="/static/js/app.js"></script>
+    <script>
+        // Dedicated Certificate Page Controller
+        document.addEventListener('DOMContentLoaded', () => {
+            const mainImg = document.getElementById('mainCertPhoto');
+            const lightbox = document.getElementById('certLightbox');
+            const lightboxImg = document.getElementById('lightboxImg');
+            const openLightboxBtn = document.getElementById('openLightboxBtn');
+            const closeLightboxBtn = document.getElementById('closeLightboxBtn');
+            const lightboxBackdrop = document.getElementById('certLightboxBackdrop');
+            const themeToggleBtn = document.getElementById('certThemeToggle');
+            const lightboxTitle = lightbox ? lightbox.querySelector('.lightbox-caption h4') : null;
+            const lightboxSubtitle = lightbox ? lightbox.querySelector('.lightbox-caption p') : null;
+
+            // Synchronize theme with local storage
+            const savedTheme = localStorage.getItem('portfolio-theme') || 'dark';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            if (themeToggleBtn) {
+                themeToggleBtn.innerHTML = savedTheme === 'dark' ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
+                themeToggleBtn.addEventListener('click', () => {
+                    const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+                    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                    document.documentElement.setAttribute('data-theme', newTheme);
+                    localStorage.setItem('portfolio-theme', newTheme);
+                    themeToggleBtn.innerHTML = newTheme === 'dark' ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
+                });
+            }
+
+            // Lightbox functionality
+            function openLightbox(imgSrc, title, subtitle) {
+                if (lightbox && lightboxImg) {
+                    lightboxImg.src = imgSrc || (mainImg ? mainImg.src : '');
+                    if (lightboxTitle && title) lightboxTitle.textContent = title;
+                    if (lightboxSubtitle && subtitle) lightboxSubtitle.textContent = subtitle;
+                    lightbox.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                }
+            }
+
+            function closeLightbox() {
+                if (lightbox) {
+                    lightbox.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            }
+
+            // Single cert view lightbox
+            if (openLightboxBtn) openLightboxBtn.addEventListener('click', () => openLightbox());
+            if (mainImg) mainImg.addEventListener('click', () => openLightbox());
+
+            // Multi-accomplishment lightbox buttons
+            document.querySelectorAll('.open-accomplishment-lightbox').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    openLightbox(btn.dataset.src, btn.dataset.title, btn.dataset.subtitle);
+                });
+            });
+
+            // Accomplishment images click to lightbox
+            document.querySelectorAll('.accomplishment-img').forEach(img => {
+                img.addEventListener('click', () => {
+                    openLightbox(
+                        img.dataset.lightboxSrc,
+                        img.dataset.lightboxTitle,
+                        img.dataset.lightboxSubtitle
+                    );
+                });
+            });
+
+            if (closeLightboxBtn) closeLightboxBtn.addEventListener('click', closeLightbox);
+            if (lightboxBackdrop) lightboxBackdrop.addEventListener('click', closeLightbox);
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && lightbox && lightbox.classList.contains('active')) {
+                    closeLightbox();
+                }
+            });
+
+            // Accomplishment Accordion Toggle
+            document.querySelectorAll('.cert-accomplishment-toggle').forEach(toggle => {
+                toggle.addEventListener('click', () => {
+                    const expanded = toggle.getAttribute('aria-expanded') === 'true';
+                    const body = toggle.nextElementSibling;
+                    if (expanded) {
+                        toggle.setAttribute('aria-expanded', 'false');
+                        body.classList.remove('open');
+                    } else {
+                        toggle.setAttribute('aria-expanded', 'true');
+                        body.classList.add('open');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

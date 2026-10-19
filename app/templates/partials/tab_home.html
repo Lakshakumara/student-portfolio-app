@@ -1,0 +1,97 @@
+<!-- ===================================================================
+     TAB 1: HOME SECTION
+     File: partials/tab_home.html
+     =================================================================== -->
+<section id="tab-home" class="tab-content active">
+    <div class="glass-card hero-card">
+        <div class="hero-profile">
+            <div class="avatar-wrapper">
+                <div class="avatar-img avatar-img--photo">
+                    <img src="/static/images/profile.jpg" alt="Y.N.A. Dewmini" class="avatar-photo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+                    <i class="fa-solid fa-user-gear avatar-fallback" style="display:none;"></i>
+                </div>
+                <div class="avatar-badge" title="A/L Physical Science">
+                    <i class="fa-solid fa-atom"></i>
+                </div>
+            </div>
+            <div class="hero-info">
+                <h2>{{ data.profile.name }}</h2>
+                <div class="hero-subtitle">{{ data.profile.title }}</div>
+            </div>
+        </div>
+
+        <p class="hero-bio">
+            {{ data.profile.bio }}
+        </p>
+
+        <div class="hero-stats">
+            <div class="stat-item">
+                <div class="stat-value">A/L</div>
+                <div class="stat-label">Phys. Science</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">2028</div>
+                <div class="stat-label">Exam Target</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">Eng.</div>
+                <div class="stat-label">B.Sc. Goal</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Interest Highlight Cards -->
+    <div class="section-header">
+        <span class="section-tag">Focus Areas</span>
+        <h3 class="section-title">Core Competencies</h3>
+    </div>
+
+    <div class="glass-card">
+        <div class="project-top">
+            <div class="project-icon-box">
+                <i class="fa-brands fa-python"></i>
+            </div>
+            <div>
+                <div class="project-title">Python &amp; Web Development</div>
+                <div class="project-desc" style="margin-bottom:0;">Python, HTML5, CSS3, FastAPI</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="glass-card">
+        <div class="project-top">
+            <div class="project-icon-box" style="background: rgba(168, 85, 247, 0.15); color: var(--accent-tertiary);">
+                <i class="fa-solid fa-gamepad"></i>
+            </div>
+            <div>
+                <div class="project-title">Game Development &amp; AI</div>
+                <div class="project-desc" style="margin-bottom:0;">Pygame, Game Logic, Artificial Intelligence</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="glass-card">
+        <div class="project-top">
+            <div class="project-icon-box" style="background: rgba(6, 182, 212, 0.15); color: var(--accent-secondary);">
+                <i class="fa-solid fa-atom"></i>
+            </div>
+            <div>
+                <div class="project-title">Physical Science (A/L)</div>
+                <div class="project-desc" style="margin-bottom:0;">Maths, Physics, Chemistry — 2028 Exam</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="glass-card">
+        <div class="project-top">
+            <div class="project-icon-box" style="background: rgba(236, 72, 153, 0.15); color: #ec4899;">
+                <i class="fa-solid fa-award"></i>
+            </div>
+            <div>
+                <div class="project-title">Leadership &amp; Co-Curriculars</div>
+                <div class="project-desc" style="margin-bottom:0;">Girl Guides, St. John Ambulance, Singing &amp; Chess
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
