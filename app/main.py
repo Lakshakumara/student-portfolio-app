@@ -52,6 +52,8 @@ PORTFOLIO_DATA = {
         "status": "Advanced Level (A/L) Student — R/Ferguson High School",
         "bio": "Passionate A/L Physical Science student at R/Ferguson High School, Rathnapura, with a strong drive for Computer Engineering, Game Development, and Artificial Intelligence. Achieved 9A passes in O/L 2025 and now building expertise in Python, HTML & CSS while pursuing my dream of engineering a future in tech.",
         "target_career": "Computer Engineering / Game Development / AI",
+        "photo": "/static/images/profile.jpg",
+        "avatar": "/static/images/profile.jpg",
         "socials": {
             "github": "https://github.com/ynadewmini",
             "linkedin": "https://www.linkedin.com/in/ynadewmini",

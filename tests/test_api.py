@@ -22,6 +22,7 @@ def test_get_profile_api():
     data = response.json()
     assert "Computer Engineering" in data["target_career"]
     assert "Advanced Level (A/L) Student" in data["status"]
+    assert data["photo"] == "/static/images/profile.jpg"
 
 def test_get_academics_api():
     response = client.get("/api/academics")
@@ -73,7 +74,8 @@ def test_static_assets_and_progress_bars():
         "/static/images/certificates/singing.jpg",
         "/static/images/certificates/daham_pasala.jpg",
         "/static/images/certificates/chess.svg",
-        "/static/images/certificates/youth_leadership.svg"
+        "/static/images/certificates/youth_leadership.svg",
+        "/static/images/profile.jpg"
     ]:
         res = client.get(asset_path)
         assert res.status_code == 200
@@ -105,7 +107,7 @@ def test_get_certificates_api():
     res = client.get("/api/certificates")
     assert res.status_code == 200
     data = res.json()
-    assert len(data) == 8
+    assert len(data) == 9
     assert "ol-examination" in data
     assert "scholarship" in data
     assert "girl-guides" in data
@@ -114,6 +116,7 @@ def test_get_certificates_api():
     assert "daham-pasala" in data
     assert "chess-tournaments" in data
     assert "youth-leadership" in data
+    assert "dahampasal-academic" in data
 
 def test_get_single_certificate_api():
     res = client.get("/api/certificates/ol-examination")

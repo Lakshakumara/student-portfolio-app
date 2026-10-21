@@ -7,7 +7,7 @@
         <div class="hero-profile">
             <div class="avatar-wrapper">
                 <div class="avatar-img avatar-img--photo">
-                    <img src="/static/images/profile.jpg" alt="Y.N.A. Dewmini" class="avatar-photo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+                    <img src="{{ data.profile.photo or '/static/images/profile.jpg' }}" alt="{{ data.profile.name }}" class="avatar-photo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
                     <i class="fa-solid fa-user-gear avatar-fallback" style="display:none;"></i>
                 </div>
                 <div class="avatar-badge" title="A/L Physical Science">
