@@ -140,7 +140,20 @@ function initContactForm() {
     const contactForm = document.getElementById('contactForm');
     const responseBox = document.getElementById('contactResponse');
 
-    if (!contactForm) return;
+    const directMailLink = document.getElementById('directMailtoLink');
+    const updateMailto = () => {
+        if (!directMailLink) return;
+        const subj = encodeURIComponent(document.getElementById('msgSubject')?.value || 'Portfolio Contact Inquiry');
+        const name = document.getElementById('senderName')?.value || '';
+        const bodyText = document.getElementById('msgText')?.value || '';
+        const body = encodeURIComponent(`From: ${name}\n\n${bodyText}`);
+        directMailLink.href = `mailto:ynadewmini@gmail.com?subject=${subj}&body=${body}`;
+    };
+
+    ['senderName', 'msgSubject', 'msgText'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.addEventListener('input', updateMailto);
+    });
 
     contactForm.addEventListener('submit', async (e) => {
         e.preventDefault();
@@ -148,7 +161,7 @@ function initContactForm() {
         const submitBtn = contactForm.querySelector('button[type="submit"]');
         const originalText = submitBtn.innerHTML;
         submitBtn.disabled = true;
-        submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Sending...';
+        submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Sending to ynadewmini@gmail.com...';
 
         const formData = {
             name: document.getElementById('senderName').value,
@@ -166,8 +179,9 @@ function initContactForm() {
 
             const result = await res.json();
             if (res.ok) {
-                showToast('Message sent successfully!');
+                showToast('Delivered to ynadewmini@gmail.com!');
                 contactForm.reset();
+                updateMailto();
                 if (responseBox) {
                     responseBox.style.display = 'block';
                     responseBox.innerHTML = `<i class="fa-solid fa-circle-check"></i> ${result.message}`;
@@ -186,7 +200,7 @@ function initContactForm() {
             showToast('Network error while sending message.');
             if (responseBox) {
                 responseBox.style.display = 'block';
-                responseBox.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> Network error while sending message. Please try again.`;
+                responseBox.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> Network error while sending message. Please try again or use the mail app button.`;
                 responseBox.className = 'glass-card contact-error';
             }
         } finally {

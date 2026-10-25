@@ -19,6 +19,7 @@ env/
 # Databases / local data
 *.db
 *.sqlite3
+contact_messages.json
 
 # IDE
 .idea/
